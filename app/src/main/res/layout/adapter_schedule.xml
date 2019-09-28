@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/aa"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardBackgroundColor="#101010"
@@ -18,7 +17,7 @@
 
         <TextView
             android:id="@+id/clubName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ps"
             android:text="Club Name"
@@ -27,7 +26,7 @@
 
         <TextView
             android:id="@+id/EventName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/psb"
             android:text="Event Name"
@@ -36,7 +35,7 @@
 
         <TextView
             android:id="@+id/date"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
@@ -47,12 +46,12 @@
 
         <TextView
             android:id="@+id/time"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ps"
             android:text="6:00 PM"
             android:textColor="@color/colorAccent"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 

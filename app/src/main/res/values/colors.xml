@@ -9,9 +9,7 @@
     <color name="white">#ffffff</color>
 
     <color name="dark_grey">#222222</color>
-    <color name="signin">#FF5722</color>
     <color name="hint">#BDBDBD</color>
     <color name="colorPrimaryLight">#101010</color>
-    <color name="grey">#808080</color>
 
 </resources>

@@ -71,7 +71,6 @@
             android:background="@drawable/white_gradient" />
 
         <TextView
-            android:id="@+id/title_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"

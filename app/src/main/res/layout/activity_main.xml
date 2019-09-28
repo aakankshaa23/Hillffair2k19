@@ -8,7 +8,6 @@
     tools:context=".MainActivity">
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -44,28 +43,24 @@
                 android:visibility="gone">
 
                 <Button
-                    android:id="@+id/core"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
                     android:elevation="50dp" />
 
                 <Button
-                    android:id="@+id/sponsors"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
                     android:elevation="50dp" />
 
                 <Button
-                    android:id="@+id/club"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
                     android:elevation="50dp" />
 
                 <Button
-                    android:id="@+id/reward"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
@@ -216,7 +211,7 @@
                     android:fontFamily="@font/psb"
                     android:maxLines="1"
                     android:onClick="handleClick"
-                    android:text="Coupons"
+                    android:text="Sponsors"
                     android:textColor="@color/white"
                     android:textSize="13sp" />
             </LinearLayout>
@@ -404,7 +399,6 @@
                 android:visibility="gone" />
 
             <TextView
-                android:id="@+id/schedule"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -441,7 +435,6 @@
         android:visibility="gone">
 
         <FrameLayout
-            android:id="@+id/frame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="none">
@@ -450,7 +443,6 @@
     </ScrollView>
 
     <RelativeLayout
-        android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="-8dp"
@@ -496,7 +488,6 @@
             app:civ_border_width="1dp" />
 
         <TextView
-            android:id="@+id/title_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
