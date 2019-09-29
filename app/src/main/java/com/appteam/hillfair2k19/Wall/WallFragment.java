@@ -272,21 +272,5 @@ public class WallFragment extends Fragment implements View.OnClickListener {
         queue.add(stringRequest);
 
     }
-    public void initUI() {
-        name1 = findViewById(R.id.name1);
-        referral = findViewById(R.id.referral);
-        rollNumber1 = findViewById(R.id.rollNumber1);
-        branch1 = findViewById(R.id.branch1);
-        mobile1 = findViewById(R.id.mobile1);
-        profilemain = findViewById(R.id.profilePicture);
-        reffaralDone = findViewById(R.id.referralDone);
-        sumbit=findViewById(R.id.submit);
-        save=findViewById(R.id.save);
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setData();
-            }
-        });
-    }
+   
 }
