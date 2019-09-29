@@ -87,7 +87,7 @@
                     android:layout_toRightOf="@id/like"
                     android:fontFamily="@font/psb"
                     android:text=""
-                    android:textColor="@color/white"
+                    android:textColor="#ffffff"
                     android:textSize="15sp" />
 
             </RelativeLayout>

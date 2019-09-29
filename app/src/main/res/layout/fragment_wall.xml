@@ -2,12 +2,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/yellow_orange"
-        android:src="@drawable/source1"/>
+        android:scaleType="fitXY"
 
+        android:src="@drawable/source1" />
     <ProgressBar
         android:id="@+id/loadwall"
         android:layout_width="40dp"
