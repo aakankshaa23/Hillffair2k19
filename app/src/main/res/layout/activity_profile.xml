@@ -60,9 +60,9 @@
 
     <RelativeLayout
         android:id="@+id/top"
-        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
-        android:layout_height="68dp">
+        android:layout_height="68dp"
+        android:layout_marginTop="8dp">
 
         <ImageView
             android:layout_width="match_parent"
@@ -76,8 +76,8 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="24dp"
-            android:fontFamily="@font/psb"
             android:layout_toRightOf="@id/backBtn"
+            android:fontFamily="@font/psb"
             android:text="Profile"
             android:textColor="@color/white"
             android:textSize="35sp" />
@@ -86,12 +86,12 @@
             android:id="@+id/backBtn"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:tint="@color/white"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/back_icon"
+            android:tint="@color/white"
             android:visibility="visible" />
 
     </RelativeLayout>
@@ -155,7 +155,8 @@
                 android:paddingRight="32dp"
                 android:paddingBottom="10dp"
                 android:textColor="@color/white"
-                android:textColorHint="#fff" />
+                android:textColorHint="#fff"
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/rollNumber"
@@ -176,8 +177,9 @@
                 android:paddingTop="10dp"
                 android:paddingRight="32dp"
                 android:paddingBottom="10dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:textColorHint="#fff" />
+                android:textColor="@color/white"
+                android:textColorHint="#fff"
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/branch"
@@ -199,7 +201,8 @@
                 android:paddingRight="32dp"
                 android:paddingBottom="10dp"
                 android:textColor="@color/white"
-                android:textColorHint="#fff" />
+                android:textColorHint="#fff"
+                android:textSize="15sp" />
 
             <RadioGroup
                 android:layout_width="match_parent"
@@ -226,7 +229,7 @@
                     android:paddingBottom="10dp"
                     android:textColor="@color/white"
                     android:textColorHint="#fff"
-                    android:textSize="18dp" />
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:id="@+id/female"
@@ -248,18 +251,19 @@
                     android:paddingBottom="10dp"
                     android:textColor="@color/white"
                     android:textColorHint="#fff"
-                    android:textSize="18dp" />
+                    android:textSize="15sp" />
             </RadioGroup>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="12dp"
+                android:fontFamily="@font/ps"
                 android:text="Would you like to take part in facesmash"
                 android:textColor="@color/white"
-                android:fontFamily="@font/psb"
-                android:textSize="16sp"
-                />
+                android:textSize="13sp" />
+
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -270,6 +274,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
+                    android:textSize="15sp"
                     android:layout_marginLeft="32dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginRight="10dp"
@@ -284,8 +289,7 @@
                     android:paddingRight="25dp"
                     android:paddingBottom="10dp"
                     android:textColor="@color/white"
-                    android:textColorHint="#fff"
-                    android:textSize="18dp" />
+                    android:textColorHint="#fff"/>
 
                 <RadioButton
                     android:id="@+id/no"
@@ -307,8 +311,9 @@
                     android:paddingBottom="10dp"
                     android:textColor="@color/white"
                     android:textColorHint="#fff"
-                    android:textSize="18dp" />
+                    android:textSize="15sp" />
             </RadioGroup>
+
             <EditText
                 android:id="@+id/contactNumber"
                 android:layout_width="match_parent"
@@ -316,6 +321,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="16dp"
+                android:textSize="15sp"
                 android:layout_marginRight="32dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/green_corner"
@@ -327,7 +333,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="32dp"
                 android:paddingBottom="10dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/white"
                 android:textColorHint="#fff" />
 
             <EditText
@@ -339,6 +345,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="32dp"
                 android:layout_marginBottom="8dp"
+                android:textSize="15sp"
                 android:background="@drawable/green_corner"
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:fontFamily="@font/ps"

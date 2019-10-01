@@ -3,166 +3,70 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#1B1C20"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="96dp"
-            android:layout_marginRight="16dp"
-            android:adjustViewBounds="true"
-            android:visibility="gone" />
-
-        <LinearLayout
-            android:id="@+id/main1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/main"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/psb"
-                android:text="REGISTER"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                android:visibility="invisible" />
-
-            <EditText
-                android:id="@+id/et_phone_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/login"
-                android:layout_marginLeft="48dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="48dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/green_corner"
-                android:backgroundTint="@color/white"
-                android:fontFamily="@font/ps"
-                android:gravity="center"
-                android:hint="Enter Number"
-                android:inputType="number"
-                android:paddingLeft="32dp"
-                android:paddingTop="8dp"
-                android:paddingRight="32dp"
-                android:paddingBottom="8dp"
-                android:textColor="@color/black"
-                android:textColorHint="#bbb"
-                android:textSize="18sp"
-                android:visibility="visible" />
-
-            <EditText
-                android:id="@+id/et_otp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/et_phone_number"
-                android:layout_marginLeft="48dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="48dp"
-                android:background="@drawable/green_corner"
-                android:backgroundTint="@color/white"
-                android:fontFamily="@font/ps"
-                android:gravity="center"
-                android:hint="Enter Otp"
-                android:inputType="number"
-                android:paddingLeft="32dp"
-                android:paddingTop="8dp"
-                android:paddingRight="32dp"
-                android:paddingBottom="8dp"
-                android:textColor="@color/black"
-                android:textColorHint="#bbb"
-                android:textSize="18sp"
-                android:visibility="gone" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="48dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="14dp"
-                app:cardElevation="0dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true"
-                app:contentPaddingBottom="8dp"
-                app:contentPaddingLeft="16dp"
-                app:contentPaddingRight="16dp"
-                app:contentPaddingTop="8dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/btn_generate_otp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/psb"
-                        android:text="GET OTP"
-                        android:textColor="@color/black"
-                        android:textSize="13sp"
-                        android:visibility="visible" />
-
-                    <TextView
-                        android:id="@+id/btn_sign_in"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/psb"
-                        android:text="VERIFY"
-                        android:textColor="@color/black"
-                        android:textSize="13sp"
-                        android:visibility="gone" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-
-    </LinearLayout>
 
     <TextView
-        android:id="@+id/skip"
+        android:id="@+id/halloween"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@id/hoh"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/sh"
+        android:text="HILL AFFAIR"
+        android:textColor="@color/white"
+        android:textSize="35sp" />
 
-        android:fontFamily="@font/psb"
-        android:padding="16dp"
-        android:text="Skip"
+    <TextView
+        android:id="@+id/hoh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ghost"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/sh"
+        android:text="Horror of the Hills"
         android:textAllCaps="true"
-        android:textColor="@color/black"
-        android:visibility="gone" />
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/ghost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="16dp"
+        android:adjustViewBounds="true"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/ghost" />
 
     <Button
         android:id="@+id/phone_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="40dp" />
-    <!--        android:background="?attr/selectableItemBackgroundBorderless"-->
+        android:layout_below="@id/ghost"
+        android:layout_centerHorizontal="true"
+        android:background="#1b1c20"
+        android:fontFamily="@font/sh"
+        android:text="GET IN"
+        android:textColor="@color/colorAccent"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/ps"
+        android:text="Developed by App Team"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="13sp" />
 
 </RelativeLayout>

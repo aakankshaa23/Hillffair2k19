@@ -33,9 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:gravity="center"
-            android:paddingRight="8dp"
+            android:orientation="horizontal"
             android:paddingLeft="8dp"
-            android:orientation="horizontal">
+            android:paddingRight="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -89,8 +89,8 @@
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
                     android:background="@null"
-                    android:onClick="handleClick"
                     android:maxHeight="24dp"
+                    android:onClick="handleClick"
                     android:scaleType="fitCenter"
                     android:tint="@color/white"
                     app:srcCompat="@drawable/home" />
@@ -100,11 +100,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:paddingTop="4dp"
                     android:fontFamily="@font/psb"
                     android:gravity="center_vertical"
                     android:maxLines="1"
                     android:onClick="handleClick"
+                    android:paddingTop="4dp"
                     android:text="Home"
                     android:textColor="@color/white"
                     android:textSize="13sp" />
@@ -126,8 +126,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
-                    android:maxHeight="24dp"
                     android:background="@null"
+                    android:maxHeight="24dp"
                     android:onClick="handleClick"
                     android:scaleType="fitCenter"
                     android:tint="@color/white"
@@ -163,8 +163,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
-                    android:maxHeight="24dp"
                     android:background="@null"
+                    android:maxHeight="24dp"
                     android:onClick="handleClick"
                     android:scaleType="fitCenter"
                     android:tint="@color/white"
@@ -200,8 +200,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
-                    android:maxHeight="24dp"
                     android:background="@null"
+                    android:maxHeight="24dp"
                     android:onClick="handleClick"
                     android:scaleType="fitCenter"
                     android:tint="@color/white"
@@ -402,6 +402,7 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:visibility="gone" />
+
             <TextView
                 android:id="@+id/schedule"
                 android:layout_width="wrap_content"
@@ -413,6 +414,7 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:visibility="gone" />
+
             <TextView
                 android:id="@+id/clubsNav"
                 android:layout_width="wrap_content"
@@ -500,11 +502,23 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
-            android:fontFamily="@font/psb"
-            android:text="HILL'FFAIR 2019"
+            android:fontFamily="@font/sh"
+            android:text="HILL AFFAIR"
             android:textColor="@color/white"
             android:textSize="19sp" />
 
     </RelativeLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/ghost"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:adjustViewBounds="true"
+        android:elevation="5dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/spider"
+        app:lottie_repeatMode="reverse" />
 
 </RelativeLayout>

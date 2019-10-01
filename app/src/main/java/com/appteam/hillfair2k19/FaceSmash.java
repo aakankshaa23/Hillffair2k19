@@ -108,17 +108,17 @@ public class FaceSmash extends Fragment {
         CardView cardView1 = inflateView.findViewById(R.id.card1);
         CardView cardView2 = inflateView.findViewById(R.id.card2);
 
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
-
-
-        cardView2.setTranslationY(metrics.heightPixels / 2);
-        ObjectAnimator animation = ObjectAnimator.ofFloat(cardView1, "translationY", metrics.heightPixels / 2);
-        animation.setDuration(1000);
-        animation.start();
-
-        animation = ObjectAnimator.ofFloat(cardView2, "translationY", -metrics.heightPixels / 2);
-        animation.setDuration(1000);
-        animation.start();
+//        DisplayMetrics metrics = getResources().getDisplayMetrics();
+//
+//
+//        cardView2.setTranslationY(metrics.heightPixels / 2);
+//        ObjectAnimator animation = ObjectAnimator.ofFloat(cardView1, "translationY", metrics.heightPixels / 2);
+//        animation.setDuration(1000);
+//        animation.start();
+//
+//        animation = ObjectAnimator.ofFloat(cardView2, "translationY", -metrics.heightPixels / 2);
+//        animation.setDuration(1000);
+//        animation.start();
 
 
         initVolleyCallback();
@@ -421,6 +421,7 @@ public class FaceSmash extends Fragment {
 
                 Picasso.with(getContext()).load(imageUrls.get(firstUrl)).placeholder(R.drawable.progress_animation).into(firstPersonImage);
                 Picasso.with(getContext()).load(imageUrls.get(secondUrl)).placeholder(R.drawable.progress_animation).into(secondPersonImage);
+
                 firstImage = firstUrl;
                 secondImage = secondUrl;
 
