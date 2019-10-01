@@ -255,8 +255,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     currentSelected = 3;
 
                     l = findViewById(R.id.couponsLayout);
-                    Coupons coupons = new Coupons();
-                    fragmentTransaction.replace(R.id.fragmentHolder, coupons);
+                    SponsersFragment sponsersFragment = new SponsersFragment(this);
+                    fragmentTransaction.replace(R.id.fragmentHolder, sponsersFragment);
                     fragmentTransaction.commit();
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
