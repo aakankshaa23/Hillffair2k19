@@ -242,7 +242,7 @@ public class Profile extends AppCompatActivity {
                                                 pass = encodeTobase64(img);
 
                                                 profilePicture.setImageBitmap(img);
-                                                Toast.makeText(Profile.this, "Image Saved!", Toast.LENGTH_SHORT).show();
+//                                                Toast.makeText(Profile.this, "Image Saved!", Toast.LENGTH_SHORT).show();
                                                 counter = 1;
                                                 buttonLoadImage.setVisibility(View.GONE);
                                                 loadPic.setVisibility(View.GONE);
@@ -380,7 +380,7 @@ public class Profile extends AppCompatActivity {
 
                             @Override
                             public void onError(String requestId, ErrorInfo error) {
-                                Toast.makeText(Profile.this, "Error", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(Profile.this, "Error", Toast.LENGTH_SHORT).show();
                                 Log.v("ErrorCloud", String.valueOf(error));
                             }
 

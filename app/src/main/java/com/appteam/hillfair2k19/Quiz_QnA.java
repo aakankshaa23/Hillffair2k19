@@ -213,7 +213,7 @@ public class Quiz_QnA extends AppCompatActivity {
 
 
     private void Score() {
-        Toast.makeText(this, "Finish", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Finish", Toast.LENGTH_SHORT).show();
         nextQuestion = "0";
         timeview.setVisibility(View.GONE);
         button_1.setVisibility(View.GONE);

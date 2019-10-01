@@ -264,7 +264,7 @@ public class WallFragment extends Fragment implements View.OnClickListener {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(activity, response, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(activity, response, Toast.LENGTH_SHORT).show();
                         index = 1;
                         getData();
                         loadwall.setVisibility(View.GONE);
@@ -273,7 +273,7 @@ public class WallFragment extends Fragment implements View.OnClickListener {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(activity, String.valueOf(error), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(activity, String.valueOf(error), Toast.LENGTH_SHORT).show();
                     }
                 }) {
             @Override

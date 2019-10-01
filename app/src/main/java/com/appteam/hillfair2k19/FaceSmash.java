@@ -199,7 +199,7 @@ public class FaceSmash extends Fragment {
         secondPersonImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "f", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "f", Toast.LENGTH_SHORT).show();
 
                 final ImageView btn = inflateView.findViewById(R.id.heartImageView);
                 btn.setOnClickListener(new View.OnClickListener() {
@@ -244,6 +244,8 @@ public class FaceSmash extends Fragment {
 
                         else {
 
+                            firstPersonImage.setClickable(true);
+                            secondPersonImage.setClickable(true);
                             changeImage();
                         }
 
@@ -314,7 +316,7 @@ public class FaceSmash extends Fragment {
                     Log.e("zHell", jsonArray.toString());
 
 //                    //JsonArray
-                    Toast.makeText(getContext(), String.valueOf(jsonArray), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), String.valueOf(jsonArray), Toast.LENGTH_SHORT).show();
 
 
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -361,7 +363,8 @@ public class FaceSmash extends Fragment {
 
 
     void handleNoIMages() {
-
+        firstPersonImage.setClickable(false);
+        secondPersonImage.setClickable(false);
         Log.d("sizes", String.valueOf(imageUrls.size()));
         new AlertDialog.Builder(getContext())
                 .setTitle("No Entries")

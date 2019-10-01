@@ -64,6 +64,7 @@
             android:layout_marginRight="8dp"
             android:layout_centerVertical="true"
             android:fontFamily="@font/psb"
+            android:visibility="gone"
             android:gravity="center"
             android:text="Know\nMore"
             android:textColor="@color/white"

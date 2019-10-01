@@ -345,6 +345,7 @@
                 android:layout_marginRight="32dp"
                 android:layout_marginBottom="8dp"
                 android:textSize="15sp"
+                android:visibility="gone"
                 android:background="@drawable/green_corner"
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:fontFamily="@font/ps"

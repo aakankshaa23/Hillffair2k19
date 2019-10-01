@@ -335,6 +335,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="64dp"
                 android:layout_marginTop="8dp"
+                android:visibility="gone"
                 android:fontFamily="@font/ps"
                 android:text="Referral Code"
                 android:textColor="@color/white"
@@ -354,6 +355,7 @@
                 android:maxLines="1"
                 android:paddingLeft="16dp"
                 android:paddingTop="8dp"
+                android:visibility="gone"
                 android:paddingRight="16dp"
                 android:paddingBottom="8dp"
                 android:textColor="@color/white"
@@ -367,6 +369,7 @@
                 android:layout_marginTop="2dp"
                 android:text="*click the code above to copy referral"
                 android:textColor="#fff"
+                android:visibility="gone"
                 android:textSize="11sp" />
 
             <TextView
@@ -377,6 +380,7 @@
                 android:fontFamily="@font/ps"
                 android:text="No Of Referral Done"
                 android:textColor="@color/white"
+                android:visibility="gone"
                 android:textSize="13sp" />
 
             <TextView
@@ -390,6 +394,7 @@
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:fontFamily="@font/psb"
                 android:paddingLeft="16dp"
+                android:visibility="gone"
                 android:paddingTop="8dp"
                 android:paddingRight="16dp"
                 android:paddingBottom="8dp"

@@ -125,7 +125,7 @@ public class ProfileMain extends AppCompatActivity {
                 ClipData clip = ClipData.newPlainText("COPY", text1);
                 clipboard.setPrimaryClip(clip);
 
-                Toast.makeText(getApplicationContext(), "Referral Copied", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "Referral Copied", Toast.LENGTH_SHORT).show();
             }
         });
         initUI();
@@ -185,7 +185,7 @@ public class ProfileMain extends AppCompatActivity {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Toast.makeText(ProfileMain.this, String.valueOf(response), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(ProfileMain.this, String.valueOf(response), Toast.LENGTH_SHORT).show();
                         try {
                             name1.setText((String) (response.get("name")));
                             referral.setText((String) (response.get("referral_friend")));
@@ -355,7 +355,7 @@ String ImageCheck = "1";
                                                 pass = encodeTobase64(img);
                                                 profilemain.setImageBitmap(img);
                                                 loadPic.setVisibility(View.GONE);
-                                                Toast.makeText(ProfileMain.this, "Image Saved!", Toast.LENGTH_SHORT).show();
+//                                                Toast.makeText(ProfileMain.this, "Image Saved!", Toast.LENGTH_SHORT).show();
                                                 counter = 1;
 
                                             }
@@ -413,7 +413,7 @@ String ImageCheck = "1";
         if (drawable != null && pass == null) {
             Bitmap bitmap = drawable.getBitmap();
             pass = encodeTobase64(bitmap);
-            Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();
         }
         if (Name.length() == 0) {
             Toast.makeText(ProfileMain.this, "Seems You Didn`t enter all the details", Toast.LENGTH_SHORT).show();
@@ -464,7 +464,7 @@ String ImageCheck = "1";
 
                                 @Override
                                 public void onError(String requestId, ErrorInfo error) {
-                                    Toast.makeText(ProfileMain.this, "Error", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(ProfileMain.this, "Error", Toast.LENGTH_SHORT).show();
                                     Log.v("ErrorCloud", String.valueOf(error));
                                 }
 
@@ -509,7 +509,7 @@ String ImageCheck = "1";
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(ProfileMain.this, response, Toast.LENGTH_LONG).show();
+//                        Toast.makeText(ProfileMain.this, response, Toast.LENGTH_LONG).show();
                         sumbit.setVisibility(View.GONE);
                         name1.setEnabled(false);
                         rollNumber1.setEnabled(false);
@@ -523,7 +523,7 @@ String ImageCheck = "1";
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(ProfileMain.this, error.toString(), Toast.LENGTH_LONG).show();
+//                        Toast.makeText(ProfileMain.this, error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }) {
             @Override
