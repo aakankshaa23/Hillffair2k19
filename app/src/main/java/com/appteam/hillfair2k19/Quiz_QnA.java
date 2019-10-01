@@ -8,6 +8,7 @@ import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +43,8 @@ public class Quiz_QnA extends AppCompatActivity {
     CountDownTimer countDownTimer;
     RequestQueue requestQueue;
     List<QuestionData> questions = new ArrayList<>();
-
+    String nextQuestion = "1";
+    ImageView backBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +55,14 @@ public class Quiz_QnA extends AppCompatActivity {
         button_3 = findViewById(R.id.button3);
         button_4 = findViewById(R.id.button4);
         questionview = findViewById(R.id.textView6);
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         timeview = findViewById(R.id.textView7);
-
         requestQueue = Volley.newRequestQueue(this);
         countDownTimer = new CountDownTimer(15000, 1000) {
             @Override
@@ -64,14 +72,8 @@ public class Quiz_QnA extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                counter++;
-                if (counter < questions.size()) {
+                if (counter < 10)
                     UpdateQuestion();
-                } else {
-                    Score();
-                }
-
-
             }
         };
         intent = getIntent();
@@ -126,9 +128,19 @@ public class Quiz_QnA extends AppCompatActivity {
         button_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                questions.get(counter).setOption_chosen(1);
-                countDownTimer.onFinish();
 
+                questions.get(counter).setOption_chosen(1);
+                if (counter == 9)
+                {
+                    button_1.setVisibility(View.GONE);
+                    button_2.setVisibility(View.GONE);
+                    button_3.setVisibility(View.GONE);
+                    button_4.setVisibility(View.GONE);
+                    questionview.setText("");
+                    Score();
+                }
+                else
+                countDownTimer.onFinish();
 
             }
         });
@@ -137,6 +149,16 @@ public class Quiz_QnA extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 questions.get(counter).setOption_chosen(2);
+                if (counter == 9)
+                {
+                    button_1.setVisibility(View.GONE);
+                    button_2.setVisibility(View.GONE);
+                    button_3.setVisibility(View.GONE);
+                    button_4.setVisibility(View.GONE);
+                    questionview.setText("");
+                    Score();
+                }
+                else
                 countDownTimer.onFinish();
             }
         });
@@ -144,6 +166,16 @@ public class Quiz_QnA extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 questions.get(counter).setOption_chosen(3);
+                if (counter == 9)
+                {
+                    button_1.setVisibility(View.GONE);
+                    button_2.setVisibility(View.GONE);
+                    button_3.setVisibility(View.GONE);
+                    button_4.setVisibility(View.GONE);
+                    questionview.setText("");
+                    Score();
+                }
+                else
                 countDownTimer.onFinish();
             }
         });
@@ -151,6 +183,16 @@ public class Quiz_QnA extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 questions.get(counter).setOption_chosen(4);
+                if (counter == 9)
+                {
+                    button_1.setVisibility(View.GONE);
+                    button_2.setVisibility(View.GONE);
+                    button_3.setVisibility(View.GONE);
+                    button_4.setVisibility(View.GONE);
+                    questionview.setText("");
+                    Score();
+                }
+                else
                 countDownTimer.onFinish();
             }
         });
@@ -160,24 +202,27 @@ public class Quiz_QnA extends AppCompatActivity {
 
 
     private void UpdateQuestion() {
-        Toast.makeText(this, String.valueOf(counter), Toast.LENGTH_SHORT).show();
-        if (counter >= 10)
-            Score();
-        questionview.setText(questions.get(counter).getQuestion());
-        button_1.setText(questions.get(counter).getOption_1());
-        button_2.setText(questions.get(counter).getOption_2());
-        button_3.setText(questions.get(counter).getOption_3());
-        button_4.setText(questions.get(counter).getOption_4());
-        countDownTimer.start();
-
-
+            questionview.setText(questions.get(counter).getQuestion());
+            button_1.setText(questions.get(counter).getOption_1());
+            button_2.setText(questions.get(counter).getOption_2());
+            button_3.setText(questions.get(counter).getOption_3());
+            button_4.setText(questions.get(counter).getOption_4());
+            counter++;
+            countDownTimer.start();
     }
 
 
     private void Score() {
-
+        Toast.makeText(this, "Finish", Toast.LENGTH_SHORT).show();
+        nextQuestion = "0";
+        timeview.setVisibility(View.GONE);
+        button_1.setVisibility(View.GONE);
+        button_2.setVisibility(View.GONE);
+        button_3.setVisibility(View.GONE);
+        button_4.setVisibility(View.GONE);
+        questionview.setText("");
         final SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
-        final String firebase_id = sharedPreferences.getString("uid", "null");
+        final String firebase_id = sharedPreferences.getString("fireBaseId", "null");
         Log.v("firebase_id", firebase_id);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, urlofScore, new Response.Listener<String>() {
             @Override
@@ -188,11 +233,7 @@ public class Quiz_QnA extends AppCompatActivity {
                     Score = jsonObject.getInt("score");
 //                    Toast.makeText(Quiz_QnA.this, "Score is " + Score, Toast.LENGTH_SHORT).show();
                     questionview.setText("Score " + Score);
-                    timeview.setVisibility(View.GONE);
-                    button_1.setVisibility(View.GONE);
-                    button_2.setVisibility(View.GONE);
-                    button_3.setVisibility(View.GONE);
-                    button_4.setVisibility(View.GONE);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -224,15 +265,13 @@ public class Quiz_QnA extends AppCompatActivity {
 
     }
 
-
-
-
-
-
-
-
-
-
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(Quiz_QnA.this, MainActivity.class);
+        startActivity(i);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        finish();
+    }
 
 /*
 

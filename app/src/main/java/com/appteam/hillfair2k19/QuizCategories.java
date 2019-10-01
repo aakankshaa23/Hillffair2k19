@@ -104,6 +104,7 @@ public class QuizCategories extends Fragment {
                 Intent intent = new Intent(getActivity(), Quiz_QnA.class);
                 intent.putExtra("Category", 1);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 
@@ -116,6 +117,7 @@ public class QuizCategories extends Fragment {
                 Intent intent = new Intent(getActivity(), Quiz_QnA.class);
                 intent.putExtra("Category", 2);
                 startActivity(intent);
+                getActivity().finish();
 
             }
         });
@@ -129,6 +131,7 @@ public class QuizCategories extends Fragment {
                 Intent intent = new Intent(getActivity(), Quiz_QnA.class);
                 intent.putExtra("Category", 3);
                 startActivity(intent);
+                getActivity().finish();
 
             }
         });
@@ -142,6 +145,7 @@ public class QuizCategories extends Fragment {
                 Intent intent = new Intent(getActivity(), Quiz_QnA.class);
                 intent.putExtra("Category", 4);
                 startActivity(intent);
+                getActivity().finish();
 
             }
         });
@@ -156,6 +160,7 @@ public class QuizCategories extends Fragment {
                 Intent intent = new Intent(getActivity(), Quiz_QnA.class);
                 intent.putExtra("Category", 5);
                 startActivity(intent);
+                getActivity().finish();
 
             }
         });
@@ -171,6 +176,7 @@ public class QuizCategories extends Fragment {
                 Intent intent = new Intent(getActivity(), Quiz_QnA.class);
                 intent.putExtra("Category", 6);
                 startActivity(intent);
+                getActivity().finish();
 
             }
         });
@@ -186,6 +192,7 @@ public class QuizCategories extends Fragment {
                 Intent intent = new Intent(getActivity(), Quiz_QnA.class);
                 intent.putExtra("Category", 7);
                 startActivity(intent);
+                getActivity().finish();
 
             }
         });

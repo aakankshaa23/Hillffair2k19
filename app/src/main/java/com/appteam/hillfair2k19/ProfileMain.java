@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -81,10 +83,12 @@ public class ProfileMain extends AppCompatActivity {
     private ClipboardManager myClipboard;
     private ClipData myClip;
     private byte[] byteArray;
+    private String imageUrl;
     private int PICK_PHOTO_CODE = 1046;
     private int GALLERY = 1, CAMERA = 2;
     private String Name, ContactNumber, Branch, RollNumber, referal, img_Url, base64b;
-
+    RadioButton faceSmashYes , faceSmashNo ;
+    String face_smash_status;
     public static String encodeTobase64(Bitmap image) {
         Bitmap immage = image;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -100,6 +104,8 @@ public class ProfileMain extends AppCompatActivity {
         setContentView(R.layout.activity_profile_main);
         progress = findViewById(R.id.loadwall);
         loadPic = findViewById(R.id.loadPic);
+        faceSmashNo = findViewById(R.id.no);
+        faceSmashYes = findViewById(R.id.yes);
         textView = findViewById(R.id.referral);
         findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -188,8 +194,21 @@ public class ProfileMain extends AppCompatActivity {
                             mobile1.setText((String) (response.get("mobile")));
                             reffaralDone.setText((String) (response.get("referral_friend")));
                             String image_url = (String) response.get("image_url");
-                            Picasso.with(ProfileMain.this).load(image_url).resize(80, 80).centerCrop().into(profilemain);
-
+                            face_smash_status = (String) response.getString("face_smash_status");
+                            if (face_smash_status.equals("1"))
+                                faceSmashYes.setChecked(true);
+                            else
+                                faceSmashNo.setChecked(true);
+                            imageUrl = image_url;
+                            if (image_url != null) {
+                                Picasso.with(ProfileMain.this).load(image_url).resize(80, 80).centerCrop().into(profilemain);
+                                BitmapDrawable drawable = (BitmapDrawable) profilemain.getDrawable();
+                                if (drawable != null) {
+                                    Bitmap bitmap = drawable.getBitmap();
+                                    pass = encodeTobase64(bitmap);
+                                }
+                            }
+                            progress.setVisibility(View.GONE);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -308,7 +327,7 @@ public class ProfileMain extends AppCompatActivity {
         });
 
     }
-
+String ImageCheck = "1";
     public void isHuman(final Bitmap thumbnail) {
         FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(thumbnail);
         FirebaseVisionFaceDetector detector = FirebaseVision.getInstance()
@@ -327,6 +346,7 @@ public class ProfileMain extends AppCompatActivity {
 
                                             List<FirebaseVisionPoint> faceContours = face.getContour(FirebaseVisionFaceContour.ALL_POINTS).getPoints();
                                             if (faceContours != null) {
+                                                ImageCheck = "0";
                                                 ByteArrayOutputStream bs = new ByteArrayOutputStream();
                                                 selectedImage.compress(Bitmap.CompressFormat.JPEG, 50, bs);
                                                 byteArray = bs.toByteArray();
@@ -389,15 +409,20 @@ public class ProfileMain extends AppCompatActivity {
         Branch = String.valueOf(branch1.getText());
         referal = String.valueOf(referral.getText());
         ContactNumber = mobile1.getText().toString();
+        BitmapDrawable drawable = (BitmapDrawable) profilemain.getDrawable();
+        if (drawable != null && pass == null) {
+            Bitmap bitmap = drawable.getBitmap();
+            pass = encodeTobase64(bitmap);
+            Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();
+        }
         if (Name.length() == 0) {
             Toast.makeText(ProfileMain.this, "Seems You Didn`t enter all the details", Toast.LENGTH_SHORT).show();
         } else {
             final SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
             final SharedPreferences.Editor editor = sharedPreferences.edit();
-
-            if (pass == "") {
+            if ( pass == "" || pass == null)
                 Toast.makeText(ProfileMain.this, "Please select profile picture", Toast.LENGTH_SHORT).show();
-            } else if (Name == "" || RollNumber == "" || Branch == "" || ContactNumber == "" || pass == "") {
+            else if (Name == "" || RollNumber == "" || Branch == "" || ContactNumber == "" || pass == "" ) {
                 Toast.makeText(ProfileMain.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             } else if (RollNumber.equals("0")) {
                 Toast.makeText(ProfileMain.this, "Please Enter Valid Roll No", Toast.LENGTH_SHORT).show();
@@ -410,42 +435,51 @@ public class ProfileMain extends AppCompatActivity {
                 //editor.putString("Gender", gender);
                 editor.commit();
                 progress.setVisibility(View.VISIBLE);
-                String requestId = MediaManager.get().upload(byteArray)
-                        .unsigned("xf7gsy1r")
-                        .callback(new UploadCallback() {
-                            @Override
-                            public void onStart(String requestId) {
-                            }
+                if (ImageCheck.equals("0"))
+                {
+                    String requestId = MediaManager.get().upload(byteArray)
+                            .unsigned("xf7gsy1r")
+                            .callback(new UploadCallback() {
+                                @Override
+                                public void onStart(String requestId) {
+                                }
 
-                            @Override
-                            public void onProgress(String requestId, long bytes, long totalBytes) {
-                            }
+                                @Override
+                                public void onProgress(String requestId, long bytes, long totalBytes) {
+                                }
 
-                            @Override
-                            public void onSuccess(String requestId, Map resultData) {
-                                System.out.println(resultData.get("url"));
-                                img_Url = String.valueOf(resultData.get("url"));
-                                post(ContactNumber);
-                                editor.putString("ImageURL", img_Url);
-                                editor.commit();
+                                @Override
+                                public void onSuccess(String requestId, Map resultData) {
+                                    System.out.println(resultData.get("url"));
+                                    img_Url = String.valueOf(resultData.get("url"));
+                                    post(ContactNumber);
+                                    editor.putString("ImageURL", img_Url);
+                                    editor.commit();
 //                                startActivity(new Intent(Profile.this, MainActivity.class));
 //                                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 //                                editor.putString("ImageURL", String.valueOf(resultData.get("url")));
 //                                editor.commit();
 //                                finish();
-                            }
+                                }
 
-                            @Override
-                            public void onError(String requestId, ErrorInfo error) {
-                                Toast.makeText(ProfileMain.this, "Error", Toast.LENGTH_SHORT).show();
-                                Log.v("ErrorCloud", String.valueOf(error));
-                            }
+                                @Override
+                                public void onError(String requestId, ErrorInfo error) {
+                                    Toast.makeText(ProfileMain.this, "Error", Toast.LENGTH_SHORT).show();
+                                    Log.v("ErrorCloud", String.valueOf(error));
+                                }
 
-                            @Override
-                            public void onReschedule(String requestId, ErrorInfo error) {
-                            }
-                        })
-                        .dispatch(ProfileMain.this);
+                                @Override
+                                public void onReschedule(String requestId, ErrorInfo error) {
+                                }
+                            })
+                            .dispatch(ProfileMain.this);
+                }
+                else
+                {
+                    if (img_Url == null)
+                        img_Url = imageUrl;
+                    post(ContactNumber);
+                }
 
             }
         }
@@ -462,14 +496,20 @@ public class ProfileMain extends AppCompatActivity {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+        if (faceSmashYes.isChecked())
+            face_smash_status = "1";
+        else
+            face_smash_status = "0";
+        SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
+        final String id = sharedPreferences.getString("fireBaseId", null);
+
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.baseUrl) + "/User",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.baseUrl) + "/User/Update",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(ProfileMain.this, response, Toast.LENGTH_LONG).show();
-                        progress.setVisibility(View.GONE);
                         sumbit.setVisibility(View.GONE);
                         name1.setEnabled(false);
                         rollNumber1.setEnabled(false);
@@ -477,6 +517,7 @@ public class ProfileMain extends AppCompatActivity {
                         mobile1.setEnabled(false);
                         buttonLoadImage = findViewById(R.id.profilePicture);
                         buttonLoadImage.setFocusable(false);//////////////////////////////////////////
+                        getProfile(id);
                     }
                 },
                 new Response.ErrorListener() {
@@ -487,16 +528,14 @@ public class ProfileMain extends AppCompatActivity {
                 }) {
             @Override
             protected Map<String, String> getParams() {
-                SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
-                String id = sharedPreferences.getString("fireBaseId", null);
 
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("firebase_id", id);
                 params.put("roll_number", RollNumber);
                 params.put("branch", Branch);
-                params.put("mobile", ContactNumber);
                 params.put("name", Name);
                 params.put("image_url", img_Url);
+                params.put("face_smash_status",face_smash_status);
                 return params;
             }
 

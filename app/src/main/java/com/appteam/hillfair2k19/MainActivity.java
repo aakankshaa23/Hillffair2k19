@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, ProfileMain.class));
+                finish();
             }
         });
 
@@ -338,6 +339,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.profileNav:
                 startActivity(new Intent(this, ProfileMain.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                finish();
                 break;
             case R.id.notifNav:
                 NotificationsFragment notificationsFragment = new NotificationsFragment();
@@ -352,6 +354,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.facesmash:
                 FaceSmash faceSmash = new FaceSmash();
+                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.replace(R.id.fragmentHolder, faceSmash);
                 fragmentTransaction.commit();
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);

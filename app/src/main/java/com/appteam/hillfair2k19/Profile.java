@@ -47,6 +47,9 @@ import com.google.firebase.ml.vision.face.FirebaseVisionFaceContour;
 import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetector;
 import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetectorOptions;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -79,7 +82,8 @@ public class Profile extends AppCompatActivity {
     private TextView buttonLoadImage, save;
     private Bitmap bmp, img;
     private int PICK_PHOTO_CODE = 1046;
-    private RadioButton male, female;
+    private RadioButton male, female , faceSmashYes , faceSmashNo;
+    String face_smash_status;
 
     public static String encodeTobase64(Bitmap image) {
         Bitmap immage = image;
@@ -107,6 +111,7 @@ public class Profile extends AppCompatActivity {
             }
         });
         buttonLoadImage = findViewById(R.id.galleryView);
+        faceSmashYes = findViewById(R.id.yes);
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -391,6 +396,14 @@ public class Profile extends AppCompatActivity {
 
     public void post(final String ContactNumber) {
         try {
+            if (faceSmashYes.isChecked())
+                face_smash_status = "1";
+            else
+                face_smash_status = "0";
+            if (male.isChecked())
+                gender = "MALE";
+            else
+                gender = "FEMALE";
             // byte[] data = referal.getBytes("UTF-8");
             base64a = referal;
             if (base64a.equals(""))
@@ -410,9 +423,21 @@ public class Profile extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("ProfileCreated", "true");
                         editor.commit();
-                        Toast.makeText(Profile.this, sharedPreferences.getString("fireBaseId","12345"), Toast.LENGTH_SHORT).show();
-                        progress.setVisibility(View.GONE);
-                        startActivity(new Intent(Profile.this,MainActivity.class));
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            if (jsonObject.getString("status").equals("failure"))
+                            {
+                                updateUser();
+                            }
+                            else
+                            {
+                                progress.setVisibility(View.GONE);
+                            startActivity(new Intent(Profile.this,MainActivity.class));
+                            finish();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
@@ -432,8 +457,8 @@ public class Profile extends AppCompatActivity {
                 params.put("mobile", ContactNumber);
                 params.put("referral_friend", referal);
                 params.put("name", Name);
-                params.put("gender", "MALE");
-                params.put("face_smash_status", "0");
+                params.put("gender", gender);
+                params.put("face_smash_status", face_smash_status);
                 params.put("image_url", imgUrl);
                 return params;
             }
@@ -443,6 +468,43 @@ public class Profile extends AppCompatActivity {
 
     }
 
+    public void updateUser()
+    {
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.baseUrl) + "/User/Update",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progress.setVisibility(View.GONE);
+                        startActivity(new Intent(Profile.this,MainActivity.class));
+                        finish();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                SharedPreferences sharedPreferences = getSharedPreferences("number", MODE_PRIVATE);
+                String id = sharedPreferences.getString("fireBaseId", "12345");
+
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("firebase_id", id);
+                params.put("roll_number", RollNumber);
+                params.put("branch", Branch);
+                params.put("name", Name);
+                params.put("image_url", imgUrl);
+                params.put("face_smash_status",face_smash_status);
+                return params;
+            }
+
+        };
+        queue.add(stringRequest);
+
+    }
     @Override
     public void onBackPressed() {
 //        super.onBackPressed();
