@@ -107,7 +107,7 @@ public class FaceSmash extends Fragment {
         loadwall2=inflateView.findViewById(R.id.loadwall2);
 
         loadwall.setVisibility(View.VISIBLE);
-        loadwall2.setVisibility(View.INVISIBLE);
+        loadwall2.setVisibility(View.VISIBLE);
 
         Animation bottomUp = AnimationUtils.loadAnimation(getContext(),
                 R.anim.bottom_up);
