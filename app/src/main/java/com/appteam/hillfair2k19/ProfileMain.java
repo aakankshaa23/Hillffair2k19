@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,6 +75,8 @@ public class ProfileMain extends AppCompatActivity {
     SharedPreferences prefs;
     LinearLayout loadPic, progress;
     RelativeLayout sumbit;
+    RadioGroup radioGroup;
+    TextView status;
     FirebaseVisionFaceDetectorOptions highAccuracyOpts =
             new FirebaseVisionFaceDetectorOptions.Builder()
                     .setPerformanceMode(FirebaseVisionFaceDetectorOptions.FAST)
@@ -107,6 +110,8 @@ public class ProfileMain extends AppCompatActivity {
         faceSmashNo = findViewById(R.id.no);
         faceSmashYes = findViewById(R.id.yes);
         textView = findViewById(R.id.referral);
+        status = findViewById(R.id.status);
+        radioGroup = findViewById(R.id.radiogroup);
         findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -196,7 +201,18 @@ public class ProfileMain extends AppCompatActivity {
                             String image_url = (String) response.get("image_url");
                             face_smash_status = (String) response.getString("face_smash_status");
                             if (face_smash_status.equals("1"))
+                            {
+                                status.setVisibility(View.GONE);
+                                radioGroup.setVisibility(View.GONE);
+                            }
+                            else
+                            {
+                                status.setVisibility(View.VISIBLE);
+                                radioGroup.setVisibility(View.VISIBLE);
+                            }
+                            if (face_smash_status.equals("1")) {
                                 faceSmashYes.setChecked(true);
+                            }
                             else
                                 faceSmashNo.setChecked(true);
                             imageUrl = image_url;
