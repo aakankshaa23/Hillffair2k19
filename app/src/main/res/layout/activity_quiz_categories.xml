@@ -395,7 +395,7 @@
             android:layout_gravity="center"
             android:layout_marginRight="24dp"
             android:fontFamily="@font/psb"
-            android:text="Play\nFacesmash"
+            android:text="Play\nFace'ffair"
             android:textAlignment="viewEnd"
             android:textAllCaps="true"
             android:textColor="@color/colorAccent"

@@ -161,7 +161,7 @@ public class ProfileMain extends AppCompatActivity {
         name1.setEnabled(true);
         rollNumber1.setEnabled(true);
         branch1.setEnabled(true);
-        mobile1.setEnabled(true);
+        mobile1.setEnabled(false);
         SharedPreferences sharedPreferences = getSharedPreferences("number", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("name", String.valueOf(name1.getText()));

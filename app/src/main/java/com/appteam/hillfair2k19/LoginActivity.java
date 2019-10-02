@@ -86,6 +86,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
                 final String uid = mUser.getUid();
                 fireBaseId = uid;
+                editor.putString("contactNumber",mUser.getPhoneNumber());
                 editor.putString("Login", "Complete");
                 editor.putString("fireBaseId", uid);
                 editor.commit();

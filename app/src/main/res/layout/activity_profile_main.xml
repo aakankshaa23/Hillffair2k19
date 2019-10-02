@@ -276,7 +276,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="52dp"
                 android:layout_marginTop="12dp"
-                android:text="Would you like to take part in facesmash"
+                android:text="Would you like to take part in face'ffair"
                 android:textColor="@color/white"
                 android:fontFamily="@font/ps"
                 android:textSize="13sp" />

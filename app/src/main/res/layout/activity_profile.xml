@@ -259,7 +259,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/ps"
-                android:text="Would you like to take part in facesmash"
+                android:text="Would you like to take part in face'ffair"
                 android:textColor="@color/white"
                 android:textSize="13sp" />
 

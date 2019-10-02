@@ -122,7 +122,7 @@
             android:textSize="15sp"
             android:backgroundTint="#1B1C20"
             android:textOff="quiz"
-            android:textOn="facesmash" />
+            android:textOn="face'ffair" />
 
         <ImageView
             android:layout_width="match_parent"

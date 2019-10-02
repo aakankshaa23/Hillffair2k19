@@ -112,6 +112,7 @@ public class Profile extends AppCompatActivity {
         });
         buttonLoadImage = findViewById(R.id.galleryView);
         faceSmashYes = findViewById(R.id.yes);
+
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -299,7 +300,8 @@ public class Profile extends AppCompatActivity {
 //            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 //            finish();
 //        }
-
+        SharedPreferences sharedPreferences = getSharedPreferences("number",MODE_PRIVATE);
+        String mobileNumber = sharedPreferences.getString("contactNumber","Not Found");
         studentName = findViewById(R.id.studentName);
         rollNumber = findViewById(R.id.rollNumber);
         referral = findViewById(R.id.referal);
@@ -308,6 +310,8 @@ public class Profile extends AppCompatActivity {
         male = findViewById(R.id.male);
         female = findViewById(R.id.female);
         contactNumber = findViewById(R.id.contactNumber);
+        contactNumber.setText(mobileNumber);
+        contactNumber.setEnabled(false);
 //        final SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
 ////        contactNumber.setText(sharedPreferences.getString("numberMobile", "None").replace("+91 ", ""));
 //        contactNumber.setText(sharedPreferences.getString("Phone", "None"));

@@ -369,7 +369,7 @@
                 android:layout_margin="16dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:fontFamily="@font/psb"
-                android:text="Facesmash"
+                android:text="Face'ffair"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:visibility="gone" />
