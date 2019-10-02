@@ -9,13 +9,8 @@ public class Leaderboard {
     String name;
     int candies;
     String gender;
+    String image_url;
 
-
-    public Leaderboard(String name, int candies, String gender) {
-        this.name = name;
-        this.gender = gender;
-        this.candies = candies;
-    }
 
     public String getName() {
         return name;
@@ -39,5 +34,20 @@ public class Leaderboard {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
+    }
+
+    public Leaderboard(String name, int candies, String gender, String image_url) {
+        this.name = name;
+        this.candies = candies;
+        this.gender = gender;
+        this.image_url = image_url;
     }
 }

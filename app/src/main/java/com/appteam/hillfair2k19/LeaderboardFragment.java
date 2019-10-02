@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.VolleyError;
 import com.appteam.adapters.LeaderboardAdapter;
 import com.appteam.model.Leaderboard;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -99,7 +100,7 @@ public class LeaderboardFragment extends Fragment implements View.OnClickListene
         ToggleButtonState = toggleButton.isChecked();
 
         if (ToggleButtonState)
-            mVolleyService.getJsonObjectDataVolley("GETJSONARRAYLIFESAVER", getString(R.string.baseUrl) + "/leaderboard");
+            mVolleyService.getJsonArrayDataVolley("GETJSONARRAYLIFESAVER", getString(R.string.baseUrl) + "/faceSmash");
         else
             mVolleyService.getJsonObjectDataVolley("GETJSONARRAYLIFESAVER", getString(R.string.baseUrl) + "/quiz/leaderboard");
 
@@ -148,21 +149,11 @@ public class LeaderboardFragment extends Fragment implements View.OnClickListene
                         for (int i = 0; i < array.length(); ++i) {
                             JSONObject object = array.getJSONObject(i);
                             String name = object.getString("Name");
-                            ToggleButtonState = toggleButton.isChecked();
-                            int candies;
-                            int quiz_rating;
-
                             String gender = object.getString("Gender");
-                            Leaderboard leaderboard;
-                            if (ToggleButtonState) {
-                                candies = object.getInt("candies");
-                                leaderboard = new Leaderboard(name, candies, gender);
-                            } else {
-                                quiz_rating = object.getInt("quiz_rating");
-                                leaderboard = new Leaderboard(name, quiz_rating, gender);
-                            }
+                            int quiz_rating = object.getInt("quiz_rating");
+                            String image_url=object.getString("image_url");
 
-                            clubList.add(leaderboard);
+                            clubList.add(new Leaderboard(name,quiz_rating,gender,image_url));
 
                         }
 
@@ -176,6 +167,25 @@ public class LeaderboardFragment extends Fragment implements View.OnClickListene
                     loadwall.setVisibility(View.INVISIBLE);
                 } else {
                     Log.e("zHell", jsonArray.toString());
+                    for(int i=0;i<jsonArray.length();++i){
+
+                        try {
+                            JSONObject object=jsonArray.getJSONObject(i);
+                            String name =object.getString("name");
+                            int rating=object.getInt("rating");
+                            String gender=object.getString("gender");
+                            String image_url=object.getString("url");
+                            clubList.add(new Leaderboard(name,rating,gender,image_url));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        clubAdapter.notifyDataSetChanged();
+                        loadwall.setVisibility(View.INVISIBLE);
+
+                    }
+
+
 
 //
 

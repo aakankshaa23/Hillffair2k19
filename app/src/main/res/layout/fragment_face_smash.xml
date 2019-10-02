@@ -34,6 +34,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop" />
+                <ProgressBar
+                    android:id="@+id/loadwall"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:theme="@style/AppTheme1"
+                    android:visibility="gone" />
 
                 <ImageView
                     android:id="@+id/heartImageView2"
@@ -75,6 +82,13 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop" />
 
+                <ProgressBar
+                    android:id="@+id/loadwall2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:theme="@style/AppTheme1"
+                    android:visibility="gone" />
                 <ImageView
                     android:id="@+id/heartImageView"
                     android:layout_width="wrap_content"

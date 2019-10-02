@@ -19,6 +19,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
@@ -67,6 +68,8 @@ public class FaceSmash extends Fragment {
 
     private Animation popOut;
     private Animation popIn;
+    ProgressBar loadwall;
+    ProgressBar loadwall2;
 
 
     public FaceSmash() {
@@ -84,6 +87,7 @@ public class FaceSmash extends Fragment {
         hashMap = new HashMap<>();
 
 
+
         popOut = AnimationUtils.loadAnimation(getContext(),
                 R.anim.pop_out);
 
@@ -98,6 +102,12 @@ public class FaceSmash extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View inflateView = inflater.inflate(R.layout.fragment_face_smash, container, false);
+
+        loadwall=inflateView.findViewById(R.id.loadwall);
+        loadwall2=inflateView.findViewById(R.id.loadwall2);
+
+        loadwall.setVisibility(View.VISIBLE);
+        loadwall2.setVisibility(View.INVISIBLE);
 
         Animation bottomUp = AnimationUtils.loadAnimation(getContext(),
                 R.anim.bottom_up);
@@ -409,6 +419,8 @@ public class FaceSmash extends Fragment {
     }
 
     private void changeImage() {
+        loadwall2.setVisibility(View.VISIBLE);
+        loadwall.setVisibility(View.VISIBLE);
 
         Log.d("size", String.valueOf(imageUrls.size()));
 
@@ -422,8 +434,11 @@ public class FaceSmash extends Fragment {
 
             if (!hashMap.containsKey(imageUrls.get(firstUrl) + imageUrls.get(secondUrl)) && !(imageUrls.get(firstUrl).equals(imageUrls.get(secondUrl)))) {
 
-                Picasso.with(getContext()).load(imageUrls.get(firstUrl)).placeholder(R.drawable.progress_animation).into(firstPersonImage);
-                Picasso.with(getContext()).load(imageUrls.get(secondUrl)).placeholder(R.drawable.progress_animation).into(secondPersonImage);
+                Picasso.with(getContext()).load(imageUrls.get(firstUrl)).into(firstPersonImage);
+                Picasso.with(getContext()).load(imageUrls.get(secondUrl)).into(secondPersonImage);
+
+                loadwall.setVisibility(View.INVISIBLE);
+                loadwall2.setVisibility(View.INVISIBLE);
 
                 firstImage = firstUrl;
                 secondImage = secondUrl;
