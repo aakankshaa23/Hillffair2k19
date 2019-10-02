@@ -1,7 +1,9 @@
 package com.appteam.hillfair2k19;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -19,13 +21,20 @@ public class ContributorsActivity extends AppCompatActivity {
     private List<contributorsItem> contributorsItems = new ArrayList<>();
     private RecyclerView recyclerView;
     private ContributorsAdaptor contributorsAdaptor;
+    ImageView backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contributors);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         contributorsAdaptor = new ContributorsAdaptor(contributorsItems, ContributorsActivity.this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -81,6 +90,7 @@ public class ContributorsActivity extends AppCompatActivity {
         contributorsItems.add(new contributorsItem("Nishant Chandla", BASE_URL + "NishantChandla.png", BASE_URL + "NishantChandla"));
         contributorsItems.add(new contributorsItem("Mrigank Anand", BASE_URL + "Spiderxm.png", BASE_URL + "Spiderxm"));
         contributorsItems.add(new contributorsItem("Kashika", BASE_URL + "Kashika1020.png", BASE_URL + "Kashika1020"));
+        contributorsItems.add(new contributorsItem("Khyati Saini", BASE_URL + "KhyatiSaini.png", BASE_URL + "KhyatiSaini"));
         contributorsItems.add(new contributorsItem("Pankaj Sharma", BASE_URL + "Spankaj0029.png", BASE_URL + "Spankaj0029"));
         contributorsItems.add(new contributorsItem("Pankaj Sharma", BASE_URL + "PankajSharma191201.png", BASE_URL + "PankajSharma191201"));
         contributorsItems.add(new contributorsItem("Anshit", BASE_URL + "Anshit01.png", BASE_URL + "Anshit01"));
@@ -91,9 +101,10 @@ public class ContributorsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        Intent i = new Intent(ContributorsActivity.this, MainActivity.class);
+        startActivity(i);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         finish();
-        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }
 }
 
