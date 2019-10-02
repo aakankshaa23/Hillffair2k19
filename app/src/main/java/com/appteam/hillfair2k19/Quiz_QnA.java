@@ -37,7 +37,7 @@ public class Quiz_QnA extends AppCompatActivity {
     private static final String urlofScore = "http://api.hillffair.com/quiz/answers";
 
     TextView button_1, button_2, button_3, button_4;
-    TextView questionview, timeview;
+    TextView questionview, timeview , questionheader , optionheader;
     int Score, counter = 0;
     Intent intent;
     CountDownTimer countDownTimer;
@@ -54,6 +54,8 @@ public class Quiz_QnA extends AppCompatActivity {
         button_2 = findViewById(R.id.button2);
         button_3 = findViewById(R.id.button3);
         button_4 = findViewById(R.id.button4);
+        questionheader = findViewById(R.id.questionheader);
+        optionheader = findViewById(R.id.optionheader);
         questionview = findViewById(R.id.textView6);
         backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +134,8 @@ public class Quiz_QnA extends AppCompatActivity {
                 questions.get(counter).setOption_chosen(1);
                 if (counter == 9)
                 {
+                    questionheader.setVisibility(View.GONE);
+                    optionheader.setVisibility(View.GONE);
                     button_1.setVisibility(View.GONE);
                     button_2.setVisibility(View.GONE);
                     button_3.setVisibility(View.GONE);
@@ -151,6 +155,8 @@ public class Quiz_QnA extends AppCompatActivity {
                 questions.get(counter).setOption_chosen(2);
                 if (counter == 9)
                 {
+                    questionheader.setVisibility(View.GONE);
+                    optionheader.setVisibility(View.GONE);
                     button_1.setVisibility(View.GONE);
                     button_2.setVisibility(View.GONE);
                     button_3.setVisibility(View.GONE);
@@ -168,6 +174,8 @@ public class Quiz_QnA extends AppCompatActivity {
                 questions.get(counter).setOption_chosen(3);
                 if (counter == 9)
                 {
+                    questionheader.setVisibility(View.GONE);
+                    optionheader.setVisibility(View.GONE);
                     button_1.setVisibility(View.GONE);
                     button_2.setVisibility(View.GONE);
                     button_3.setVisibility(View.GONE);
@@ -185,6 +193,8 @@ public class Quiz_QnA extends AppCompatActivity {
                 questions.get(counter).setOption_chosen(4);
                 if (counter == 9)
                 {
+                    questionheader.setVisibility(View.GONE);
+                    optionheader.setVisibility(View.GONE);
                     button_1.setVisibility(View.GONE);
                     button_2.setVisibility(View.GONE);
                     button_3.setVisibility(View.GONE);
@@ -215,6 +225,8 @@ public class Quiz_QnA extends AppCompatActivity {
     private void Score() {
 //        Toast.makeText(this, "Finish", Toast.LENGTH_SHORT).show();
         nextQuestion = "0";
+        questionheader.setVisibility(View.GONE);
+        optionheader.setVisibility(View.GONE);
         timeview.setVisibility(View.GONE);
         button_1.setVisibility(View.GONE);
         button_2.setVisibility(View.GONE);

@@ -22,6 +22,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/questionheader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="ps"
@@ -44,6 +45,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/optionheader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"

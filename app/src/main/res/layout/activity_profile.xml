@@ -91,7 +91,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/back_icon"
             android:tint="@color/white"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
     </RelativeLayout>
 
