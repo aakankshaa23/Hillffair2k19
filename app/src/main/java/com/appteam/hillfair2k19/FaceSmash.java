@@ -402,7 +402,7 @@ public class FaceSmash extends Fragment {
             currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
             userId = currentFirebaseUser.getUid();
-            if (userId != null) {
+            if (userId != null&&firebaseIds.size()>=firstImage&&firebaseIds.size()>=secondImage&&firebaseIds.size()>0) {
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("firebase_id", userId);
