@@ -26,7 +26,7 @@ public class QuizCategories extends Fragment {
     RelativeLayout quiz;
     Activity activity;
     private TextView faceSmash;
-
+    private int count = 0;
     public QuizCategories() {
         // required empty constructor
     }
@@ -58,6 +58,7 @@ public class QuizCategories extends Fragment {
         CardView Sports_layout = view.findViewById(R.id.view5);
         CardView Mythology_layout = view.findViewById(R.id.view6);
         CardView Movies_layout = view.findViewById(R.id.view7);
+        TextView attempted = view.findViewById(R.id.attempted);
         faceSmash = view.findViewById(R.id.facesmash);
         faceSmash.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,28 +74,40 @@ public class QuizCategories extends Fragment {
         });
 
         if (categoriesdata.getBoolean("Science", false)) {
+            count++;
             Science_layout.setVisibility(View.GONE);
         }
         if (categoriesdata.getBoolean("Anime", false)) {
             Anime_layout.setVisibility(View.GONE);
         }
         if (categoriesdata.getBoolean("Movies", false)) {
+            count++;
             Movies_layout.setVisibility(View.GONE);
         }
         if (categoriesdata.getBoolean("WebSeries", false)) {
+            count++;
             WebSeries_layout.setVisibility(View.GONE);
         }
         if (categoriesdata.getBoolean("Mythology", false)) {
+            count++;
             Mythology_layout.setVisibility(View.GONE);
         }
         if (categoriesdata.getBoolean("Sports", false)) {
+            count++;
             Sports_layout.setVisibility(View.GONE);
         }
         if (categoriesdata.getBoolean("Nit", false)) {
+            count++;
             NIT_layout.setVisibility(View.GONE);
         }
-
-        Science_layout.setOnClickListener(new View.OnClickListener() {
+        if (count == 6)
+        {
+            attempted.setVisibility(View.VISIBLE);
+        }
+        else {
+            attempted.setVisibility(View.GONE);
+        }
+            Science_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 editor.putBoolean("Science", true);

@@ -401,5 +401,16 @@
             android:textColor="@color/colorAccent"
             android:textSize="13sp" />
     </RelativeLayout>
-
+<TextView
+    android:id="@+id/attempted"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/psb"
+    android:layout_centerInParent="true"
+    android:textSize="30sp"
+    android:visibility="gone"
+    android:text="You have attempted all the categories."
+    android:textColor="@color/colorAccent"
+    android:layout_margin="24dp"
+    />
 </RelativeLayout>
