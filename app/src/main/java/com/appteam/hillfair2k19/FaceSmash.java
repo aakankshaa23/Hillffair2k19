@@ -28,6 +28,7 @@ import androidx.fragment.app.Fragment;
 import com.android.volley.VolleyError;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -242,7 +243,6 @@ public class FaceSmash extends Fragment {
 
                 postresult(secondImage);
 
-
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -419,8 +419,10 @@ public class FaceSmash extends Fragment {
     }
 
     private void changeImage() {
+
         loadwall2.setVisibility(View.VISIBLE);
         loadwall.setVisibility(View.VISIBLE);
+
 
         Log.d("size", String.valueOf(imageUrls.size()));
 
@@ -434,11 +436,31 @@ public class FaceSmash extends Fragment {
 
             if (!hashMap.containsKey(imageUrls.get(firstUrl) + imageUrls.get(secondUrl)) && !(imageUrls.get(firstUrl).equals(imageUrls.get(secondUrl)))) {
 
-                Picasso.with(getContext()).load(imageUrls.get(firstUrl)).into(firstPersonImage);
-                Picasso.with(getContext()).load(imageUrls.get(secondUrl)).into(secondPersonImage);
+                Picasso.with(getContext()).load(imageUrls.get(firstUrl)).into(firstPersonImage, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        loadwall.setVisibility(View.INVISIBLE);
+                    }
 
-                loadwall.setVisibility(View.INVISIBLE);
-                loadwall2.setVisibility(View.INVISIBLE);
+                    @Override
+                    public void onError() {
+
+                    }
+                });
+                Picasso.with(getContext()).load(imageUrls.get(secondUrl)).into(secondPersonImage, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        loadwall2.setVisibility(View.INVISIBLE);
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
+
+
+
 
                 firstImage = firstUrl;
                 secondImage = secondUrl;
