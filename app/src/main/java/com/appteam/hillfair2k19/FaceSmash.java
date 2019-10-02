@@ -25,7 +25,12 @@ import android.widget.Toast;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Callback;
@@ -37,6 +42,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 
@@ -71,8 +77,7 @@ public class FaceSmash extends Fragment {
     private Animation popIn;
     ProgressBar loadwall;
     ProgressBar loadwall2;
-
-
+    RequestQueue queue ;
     public FaceSmash() {
         // Required empty public constructor
     }
@@ -86,7 +91,7 @@ public class FaceSmash extends Fragment {
         genders = new ArrayList<>();
         ratings = new ArrayList<>();
         hashMap = new HashMap<>();
-
+        queue = Volley.newRequestQueue(getActivity());
 
 
         popOut = AnimationUtils.loadAnimation(getContext(),
@@ -393,29 +398,55 @@ public class FaceSmash extends Fragment {
                 .show();
     }
 
+    String userId = "";
+    private void postresult(final int winner) {
 
-    private void postresult(int winner) {
-
-        String userId = null;
         FirebaseUser currentFirebaseUser = null;
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
             userId = currentFirebaseUser.getUid();
-            if (userId != null&&firebaseIds.size()>=firstImage&&firebaseIds.size()>=secondImage&&firebaseIds.size()>0) {
-                JSONObject jsonObject = new JSONObject();
-                try {
-                    jsonObject.put("firebase_id", userId);
-                    jsonObject.put("ID1", firebaseIds.get(firstImage));
-                    jsonObject.put("ID2", firebaseIds.get(secondImage));
-                    jsonObject.put("WID", firebaseIds.get(winner));
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.baseUrl) + "/faceSmash",
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+//                        Toast.makeText(activity, response, Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+//                            Toast.makeText(getActivity(), String.valueOf(error), Toast.LENGTH_SHORT).show();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("firebase_id", userId);
+                    params.put("ID1",firebaseIds.get(firstImage));
+                    params.put("ID2", firebaseIds.get(secondImage));
+                    params.put("WID",firebaseIds.get(winner));
+                    return params;
                 }
-                mVolleyService.postJsonDataVolley("POSTJSONDATALIFESAVER", getString(R.string.baseUrl) + "/faceSmash", jsonObject);
-            }
+            };
+            queue.add(stringRequest);
         }
+//        if (userId != null&&firebaseIds.size()>=firstImage&&firebaseIds.size()>=secondImage&&firebaseIds.size()>0) {
+//                JSONObject jsonObject = new JSONObject();
+//                try {
+//                    jsonObject.put("firebase_id", userId);
+//                    jsonObject.put("ID1", firebaseIds.get(firstImage));
+//                    jsonObject.put("ID2", firebaseIds.get(secondImage));
+//                    jsonObject.put("WID", firebaseIds.get(winner));
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+
+
     }
 
     private void changeImage() {

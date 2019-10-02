@@ -147,6 +147,41 @@
                     android:textColor="@color/white"
                     android:textSize="32dp"
                     android:visibility="invisible" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="64dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorAccent"
+                    android:text="QUIZ SCORE :"/>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentBottom="true"
+    android:layout_marginRight="40dp"
+    >
+    <TextView
+        android:id="@+id/faceheader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/colorAccent"
+        android:text="FACE'FFAIR SCORE:"/>
+    <TextView
+        android:id="@+id/facescore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:text=""/>
+
+</LinearLayout>
+
             </RelativeLayout>
 
 

@@ -33,7 +33,7 @@
                     android:id="@+id/firstPersonImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="fitXY" />
                 <ProgressBar
                     android:id="@+id/loadwall"
                     android:layout_width="40dp"
@@ -80,7 +80,7 @@
                     android:id="@+id/secondPersonImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="fitXY" />
 
                 <ProgressBar
                     android:id="@+id/loadwall2"
